@@ -1,0 +1,82 @@
+package edu.java.project.model;
+
+import java.awt.Component;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+
+import edu.java.project.food.Food;
+import edu.java.project.weight.Weight;
+
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Model extends MainModel {
+	
+	private final JFrame frmKcal = new JFrame();
+	private Component parent;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void showMyFrame (Component parent){
+				try {
+					Model window = new Model(parent);
+					window.frmKcal.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Model(Component parent){
+		this.parent = parent;
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		
+		int x = 100; 
+		int y = 100;
+		if(parent != null) {
+			x = parent.getX();
+			y = parent.getY();
+		}
+		frmKcal.setTitle("Kcal Diary");
+		
+		frmKcal.setBounds(x, y, 800, 574);
+		frmKcal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmKcal.getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("몸무게");
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Weight.showMyFrame(parent);
+			}
+		});
+		btnNewButton.setBounds(51, 52, 141, 78);
+		frmKcal.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("식단");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Food.showMyFrame(parent);
+			}
+		});
+		btnNewButton_1.setBounds(51, 210, 141, 78);
+		frmKcal.getContentPane().add(btnNewButton_1);
+		
+		JButton btnNewButton_1_1 = new JButton("운동");
+		btnNewButton_1_1.setBounds(51, 346, 141, 78);
+		frmKcal.getContentPane().add(btnNewButton_1_1);
+	}
+}

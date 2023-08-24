@@ -1,0 +1,66 @@
+package edu.java.swing06;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class AppMain06 {
+
+	private JFrame frame;
+	private JButton btnMsgDlg;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					AppMain06 window = new AppMain06();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public AppMain06() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 533);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		btnMsgDlg = new JButton("Message Dialog");
+		btnMsgDlg.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// JOptionPane.showMessageDialog(frame, "안녕하세요");
+				JOptionPane.showMessageDialog(
+						frame, // 메시지 다이얼로그 실행될 부모 컴포넌트
+						"안녕하세요?", // 다이얼로그에 표시될 메시지
+						"메시지", // 다이얼로그 타이틀(제목)
+						JOptionPane.ERROR_MESSAGE); // 메시지 타입
+			}
+		});
+		btnMsgDlg.setFont(new Font("굴림", Font.BOLD, 20));
+		btnMsgDlg.setBounds(12, 10, 410, 99);
+		frame.getContentPane().add(btnMsgDlg);
+	}
+
+}
